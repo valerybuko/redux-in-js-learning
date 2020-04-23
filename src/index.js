@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import logger from "redux-logger";
 import './styles.css';
 import {rootReducer} from "./redux/rootReducer";
 import { DECREMENT, INCREMENT } from "./redux/types";
@@ -11,7 +12,7 @@ const subBtn = document.getElementById('sub');
 const asyncBtn = document.getElementById('async');
 const themeBtn = document.getElementById('theme');
 
-function logger(state) {
+/*function logger(state) {
     return function (next) {
         return function (action) {
             console.log('Previous state: ', state.getState());
@@ -21,7 +22,7 @@ function logger(state) {
             return (newState);
         }
     }
-}
+}*/
 
 let store = createStore(
     rootReducer,
