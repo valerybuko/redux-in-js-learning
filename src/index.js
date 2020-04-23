@@ -27,7 +27,9 @@ asyncBtn.addEventListener('click', () => {
 store.subscribe(() => {
     const state = store.getState();
     counter.textContent = state;
-})
+});
+
+store.dispatch( {  type: "INIT_APPLICATION" } )
 
 themeBtn.addEventListener('click', () => {
    // document.body.classList.toggle('dark');
