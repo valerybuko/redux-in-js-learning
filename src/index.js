@@ -1,4 +1,5 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import './styles.css';
 import {rootReducer} from "./redux/rootReducer";
 import { DECREMENT, INCREMENT } from "./redux/types";
@@ -10,7 +11,23 @@ const subBtn = document.getElementById('sub');
 const asyncBtn = document.getElementById('async');
 const themeBtn = document.getElementById('theme');
 
-let store = createStore(rootReducer, 0);
+function logger(state) {
+    return function (next) {
+        return function (action) {
+            console.log('Previous state: ', state.getState());
+            console.log('Action: ', action);
+            const newState = next(action);
+            console.log('New state', state.getState());
+            return (newState);
+        }
+    }
+}
+
+let store = createStore(
+    rootReducer,
+    0,
+    applyMiddleware(thunk, logger)
+);
 
 window.store = store;
 

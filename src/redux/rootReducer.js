@@ -5,10 +5,6 @@ export const rootReducer = (state, action) => {
        return state + 1;
     } else if (action.type === DECREMENT) {
         return state - 1;
-    } else if (action.type === ASYNC_INCREMENT) {
-        /*setTimeout(() => {
-            return state + 1;
-        }, 3000);*/
     }
 
     return state;
